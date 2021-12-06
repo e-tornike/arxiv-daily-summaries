@@ -17,7 +17,7 @@ KEYWORD_LIST = [
     "mixup", 
     "data augmentation", 
     "transformer",
-    "somputational social science", 
+    "computational social science", 
     "argument mining", 
     "scholarly document processing", 
     "citation context analysis",
