@@ -47,23 +47,24 @@ def main():
     full_report = ''
     for keyword in keyword_list:
         # full_report = full_report + '## Keyword: ' + keyword + '\n'
-        full_report = full_report + '<h2>Keyword: ' + keyword + '</h2><details>'
+        full_report = full_report + '<h2>Keyword: ' + keyword + '</h2>'
 
         if len(keyword_dict[keyword]) == 0:
             full_report = full_report + 'There is no result <br>'
-
-        for paper in keyword_dict[keyword]:
-            # report = '### {}\n - **Authors:** {}\n - **Subjects:** {}\n - **Arxiv link:** {}\n - **Pdf link:** {}\n - **Abstract**\n {}' \
-            #     .format(paper['title'], paper['authors'], paper['subjects'], paper['main_page'], paper['pdf'],
-            #             paper['abstract'])
-            report = f"<h3>{paper['title']}</h3>\
-                <strong>Authors:</strong> {paper['authors']}<br>\
-                <strong>Subjects:</strong> {paper['subjects']}<br>\
-                <strong>Arxiv:</strong> <a href='url'>{paper['main_page']}</a><br>\
-                <strong>PDF:</strong> <a href='url'>{paper['pdf']}</a><br>\
-                <strong>Abstract:</strong> {paper['abstract']}"
-            full_report = full_report + report + '<br>'
-        full_report = full_report + "</details>"
+        else:
+            full_report = full_report + "<details>"
+            for paper in keyword_dict[keyword]:
+                # report = '### {}\n - **Authors:** {}\n - **Subjects:** {}\n - **Arxiv link:** {}\n - **Pdf link:** {}\n - **Abstract**\n {}' \
+                #     .format(paper['title'], paper['authors'], paper['subjects'], paper['main_page'], paper['pdf'],
+                #             paper['abstract'])
+                report = f"<h3>{paper['title']}</h3>\
+                    <strong>Authors:</strong> {paper['authors']}<br>\
+                    <strong>Subjects:</strong> {paper['subjects']}<br>\
+                    <strong>Arxiv:</strong> <a href='url'>{paper['main_page']}</a><br>\
+                    <strong>PDF:</strong> <a href='url'>{paper['pdf']}</a><br>\
+                    <strong>Abstract:</strong> {paper['abstract']}"
+                full_report = full_report + report + '<br>'
+            full_report = full_report + "</details>"
 
     # Authentication for user filing issue (must have read/write access to repository to add issue to)
     if 'GITHUB' in os.environ:
