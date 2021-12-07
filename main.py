@@ -60,8 +60,8 @@ def main():
                 report = f"<h3>{paper['title']}</h3>\
                     <strong>Authors:</strong> {paper['authors']}<br>\
                     <strong>Subjects:</strong> {paper['subjects']}<br>\
-                    <strong>Arxiv:</strong> <a href='url'>{paper['main_page']}</a><br>\
-                    <strong>PDF:</strong> <a href='url'>{paper['pdf']}</a><br>\
+                    <strong>Arxiv:</strong> <a href='{paper['main_page']}'>{paper['main_page']}</a><br>\
+                    <strong>PDF:</strong> <a href='{paper['pdf']}'>{paper['pdf']}</a><br>\
                     <strong>Abstract:</strong> {paper['abstract']}"
                 full_report = full_report + report + '<br>'
             full_report = full_report + "</details>"
