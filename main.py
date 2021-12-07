@@ -25,7 +25,7 @@ def main():
 
     assert len(dt_list) == len(dd_list)
 
-    keyword_list = KEYWORD_LIST
+    keyword_list = sorted(KEYWORD_LIST)
     keyword_dict = {key: [] for key in keyword_list}
 
     for i in range(len(dt_list)):
