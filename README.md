@@ -1,15 +1,8 @@
-# get-daily-arxiv-noti
-
-This repository is build based on [here](github.com/kobiso/get-daily-arxiv-noti)
-
-- Subject: computer science (cs)
-- Keywords: "human object interaction", "visual relation detection", "object detection", "transformer","scene understanding", "visual reasoning"
+# arXiv Daily
 
 ## Usage( github actions)
 
-#### 0. ⭐Star⭐
-
-#### 1.Clone this Repo and Create a Repo
+#### 1. Clone and create new repository on Github
 
 - Create a repository to get notification in your github.
 -  **click "Settings"->"Secrets"->"New repository secret"** 
@@ -20,9 +13,7 @@ Name: GITHUB
 Value: your_github_username,your_github_token
 ```
 
-#### 2. Set Config
-
-**update`config.py` as your perferences.**
+#### 2. Update `config.py`
 
 ```python
 
@@ -37,7 +28,7 @@ NEW_SUB_URL = 'https://arxiv.org/list/cs/new'
 KEYWORD_LIST = ["changeme"]
 ```
 
-#### 3.  workflow
+#### 3.  Workflow
 
 To test the functionality, you can click " Run Workflow button" for an immediate run.
 
