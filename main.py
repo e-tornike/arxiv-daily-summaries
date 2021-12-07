@@ -46,16 +46,25 @@ def main():
 
     full_report = ''
     for keyword in keyword_list:
-        full_report = full_report + '## Keyword: ' + keyword + '\n'
+        # full_report = full_report + '## Keyword: ' + keyword + '\n'
+        full_report = full_report + '<details>\n<h2>Keyword: ' + keyword + '</h2>\n'
 
         if len(keyword_dict[keyword]) == 0:
             full_report = full_report + 'There is no result \n'
 
         for paper in keyword_dict[keyword]:
-            report = '### {}\n - **Authors:** {}\n - **Subjects:** {}\n - **Arxiv link:** {}\n - **Pdf link:** {}\n - **Abstract**\n {}' \
-                .format(paper['title'], paper['authors'], paper['subjects'], paper['main_page'], paper['pdf'],
-                        paper['abstract'])
+            # report = '### {}\n - **Authors:** {}\n - **Subjects:** {}\n - **Arxiv link:** {}\n - **Pdf link:** {}\n - **Abstract**\n {}' \
+            #     .format(paper['title'], paper['authors'], paper['subjects'], paper['main_page'], paper['pdf'],
+            #             paper['abstract'])
+            report = f"<h3>{paper['title']}\
+                    <strong>Authors:</strong> {paper['authors']}\n\
+                    <strong>Subjects:</strong> {paper['subjects']}\n\
+                    <strong>Arxiv:</strong> {paper['main_page']}\n\
+                    <strong>PDF:</strong> {paper['pdf']}\n\
+                    <strong>Abstract:</strong> {paper['abstract']}\n\
+                    </h3>"
             full_report = full_report + report + '\n'
+        full_report = full_report + "</details>\n"
 
     # Authentication for user filing issue (must have read/write access to repository to add issue to)
     if 'GITHUB' in os.environ:
