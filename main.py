@@ -47,7 +47,7 @@ def main():
     full_report = ''
     for keyword in keyword_list:
         # full_report = full_report + '## Keyword: ' + keyword + '\n'
-        full_report = full_report + '<br><h2>Keyword: ' + keyword + '</h2><br><>'
+        full_report = full_report + '<h2>Keyword: ' + keyword + '</h2><details>'
 
         if len(keyword_dict[keyword]) == 0:
             full_report = full_report + 'There is no result <br>'
@@ -63,7 +63,7 @@ def main():
                 <strong>PDF:</strong> <a href='url'>{paper['pdf']}</a><br>\
                 <strong>Abstract:</strong> {paper['abstract']}"
             full_report = full_report + report + '<br>'
-        full_report = full_report + "</details><br>"
+        full_report = full_report + "</details>"
 
     # Authentication for user filing issue (must have read/write access to repository to add issue to)
     if 'GITHUB' in os.environ:
