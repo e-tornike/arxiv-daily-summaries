@@ -8,12 +8,40 @@ import os
 
 from bs4 import BeautifulSoup as bs
 import urllib.request
+from transformers import (AutoTokenizer, BartConfig,
+                          BartForConditionalGeneration)
 
 from github_issue import make_github_issue
 from config import NEW_SUB_URL, KEYWORD_LIST
 
 
+class Model:
+#     def __init__(self, model_path):
+    def __init__(self):
+        self.tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large")
+        bart = BartForConditionalGeneration(BartConfig())
+#         bart.load_state_dict(
+#             torch.load(model_path),
+#             strict=False,
+#         )
+        self.bart = bart
+
+    def summarize(self, text: str):
+        inputs = self.tokenizer(
+            [text], padding="max_length", truncation=True, return_tensors="pt"
+        )
+        summary_ids = self.bart.generate(
+            inputs["input_ids"],
+            max_length=50,
+            num_beams=1,
+            early_stopping=True,
+        )
+        return self.tokenizer.batch_decode(summary_ids, skip_special_tokens=True)[0]
+
+
 def main():
+    model = Model()
+    
     page = urllib.request.urlopen(NEW_SUB_URL)
     soup = bs(page)
     content = soup.body.find("div", {'id': 'content'})
@@ -39,6 +67,7 @@ def main():
             "\n", "").strip()
         paper['subjects'] = dd_list[i].find("div", {"class": "list-subjects"}).text.replace("Subjects: ", "").strip()
         paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
+        paper['tldr'] = model.summarize(paper['abstract'])
 
         for keyword in keyword_list:
             if keyword.lower() in paper['abstract'].lower():
@@ -62,7 +91,8 @@ def main():
                     <strong>Subjects:</strong> {paper['subjects']}<br>\
                     <strong>Arxiv:</strong> <a href='{paper['main_page']}'>{paper['main_page']}</a><br>\
                     <strong>PDF:</strong> <a href='{paper['pdf']}'>{paper['pdf']}</a><br>\
-                    <strong>Abstract:</strong> {paper['abstract']}"
+                    <strong>Abstract:</strong> {paper['abstract']}\
+                    <strong>TLDR:</strong> {paper['tldr']}"
                 full_report = full_report + report + '<br>'
             full_report = full_report + "</details>"
 
