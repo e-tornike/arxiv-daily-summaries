@@ -8,8 +8,7 @@ import os
 
 from bs4 import BeautifulSoup as bs
 import urllib.request
-from transformers import (AutoTokenizer, BartConfig,
-                          BartForConditionalGeneration)
+from transformers import pipeline as pipe
 
 from github_issue import make_github_issue
 from config import NEW_SUB_URL, KEYWORD_LIST
@@ -18,25 +17,10 @@ from config import NEW_SUB_URL, KEYWORD_LIST
 class Model:
 #     def __init__(self, model_path):
     def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large")
-        bart = BartForConditionalGeneration(BartConfig())
-#         bart.load_state_dict(
-#             torch.load(model_path),
-#             strict=False,
-#         )
-        self.bart = bart
+        self.summarizer = pipe("summarization", model="facebook/bart-large-cnn")
 
     def summarize(self, text: str):
-        inputs = self.tokenizer(
-            [text], padding="max_length", truncation=True, return_tensors="pt"
-        )
-        summary_ids = self.bart.generate(
-            inputs["input_ids"],
-            max_length=130,
-            num_beams=1,
-            early_stopping=True,
-        )
-        return self.tokenizer.batch_decode(summary_ids, skip_special_tokens=True)[0]
+        return self.summarizer(text, max_length=200)
 
 
 def main():
