@@ -32,7 +32,7 @@ class Model:
         )
         summary_ids = self.bart.generate(
             inputs["input_ids"],
-            max_length=50,
+            max_length=130,
             num_beams=1,
             early_stopping=True,
         )
@@ -91,7 +91,7 @@ def main():
                     <strong>Subjects:</strong> {paper['subjects']}<br>\
                     <strong>Arxiv:</strong> <a href='{paper['main_page']}'>{paper['main_page']}</a><br>\
                     <strong>PDF:</strong> <a href='{paper['pdf']}'>{paper['pdf']}</a><br>\
-                    <strong>Abstract:</strong> {paper['abstract']}\
+                    <strong>Abstract:</strong> {paper['abstract']}<br>\
                     <strong>TLDR:</strong> {paper['tldr']}"
                 full_report = full_report + report + '<br>'
             full_report = full_report + "</details>"
