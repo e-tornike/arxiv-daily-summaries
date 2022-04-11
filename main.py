@@ -51,7 +51,7 @@ def main():
             "\n", "").strip()
         paper['subjects'] = dd_list[i].find("div", {"class": "list-subjects"}).text.replace("Subjects: ", "").strip()
         paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
-        paper['tldr'] = model.summarize(paper['abstract'])
+        paper['tldr'] = model.summarize(paper['abstract'])[0]["summary_text"]
 
         for keyword in keyword_list:
             if keyword.lower() in paper['abstract'].lower():
