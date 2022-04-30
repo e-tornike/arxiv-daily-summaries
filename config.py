@@ -26,4 +26,6 @@ KEYWORD_LIST = [
     "robustness",
     "summarization",
     "knowledge discovery",
+    "cross-language information retrieval",
+    "cross-lingual information retrieval",
 ]
