@@ -50,8 +50,8 @@ def main():
         paper['authors'] = dd_list[i].find("div", {"class": "list-authors"}).text.replace("Authors:\n", "").replace(
             "\n", "").strip()
         paper['subjects'] = dd_list[i].find("div", {"class": "list-subjects"}).text.replace("Subjects: ", "").strip()
-        paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
         paper['tldr'] = model.summarize(paper['abstract'])[0]["summary_text"]
+        #paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
 
         for keyword in keyword_list:
             if keyword.lower() in paper['abstract'].lower():
@@ -63,8 +63,10 @@ def main():
         full_report = full_report + '<h2>Keyword: ' + keyword + '</h2>'
 
         if len(keyword_dict[keyword]) == 0:
-            full_report = full_report + 'There is no result <br>'
+            #full_report = full_report + 'There is no result <br>'
+            pass
         else:
+            full_report = full_report + '<h2>Keyword: ' + keyword + '</h2>'
             full_report = full_report + "<details>"
             for paper in keyword_dict[keyword]:
                 # report = '### {}\n - **Authors:** {}\n - **Subjects:** {}\n - **Arxiv link:** {}\n - **Pdf link:** {}\n - **Abstract**\n {}' \
@@ -75,15 +77,15 @@ def main():
                     <strong>Subjects:</strong> {paper['subjects']}<br>\
                     <strong>Arxiv:</strong> <a href='{paper['main_page']}'>{paper['main_page']}</a><br>\
                     <strong>PDF:</strong> <a href='{paper['pdf']}'>{paper['pdf']}</a><br>\
-                    <strong>Abstract:</strong> {paper['abstract']}<br>\
                     <strong>TLDR:</strong> {paper['tldr']}"
                 full_report = full_report + report + '<br>'
             full_report = full_report + "</details>"
 
-    # Authentication for user filing issue (must have read/write access to repository to add issue to)
-    if 'GITHUB' in os.environ:
-        USERNAME, TOKEN = os.environ['GITHUB'].split(',')
-    make_github_issue(title=issue_title, body=full_report, assignee=USERNAME, TOKEN=TOKEN, labels=keyword_list)
+    if full_report != '' and len(full_report) > 0:  # only make issue if at least one keyword has a new paper
+        # Authentication for user filing issue (must have read/write access to repository to add issue to)
+        if 'GITHUB' in os.environ:
+            USERNAME, TOKEN = os.environ['GITHUB'].split(',')
+        make_github_issue(title=issue_title, body=full_report, assignee=USERNAME, TOKEN=TOKEN, labels=keyword_list)
 
 
 if __name__ == '__main__':
