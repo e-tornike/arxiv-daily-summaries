@@ -55,7 +55,7 @@ def main():
         #paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
 
         for keyword in keyword_list:
-            if keyword.lower() in paper['abstract'].lower():
+            if keyword.lower() in abstract.lower():
                 keyword_dict[keyword].append(paper)
 
     full_report = ''
