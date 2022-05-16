@@ -61,7 +61,7 @@ def main():
     full_report = ''
     for keyword in keyword_list:
         # full_report = full_report + '## Keyword: ' + keyword + '\n'
-        full_report = full_report + '<h2>Keyword: ' + keyword + '</h2>'
+        #full_report = full_report + '<h2>Keyword: ' + keyword + '</h2>'
 
         if len(keyword_dict[keyword]) == 0:
             #full_report = full_report + 'There is no result <br>'
