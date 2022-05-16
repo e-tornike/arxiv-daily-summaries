@@ -50,7 +50,8 @@ def main():
         paper['authors'] = dd_list[i].find("div", {"class": "list-authors"}).text.replace("Authors:\n", "").replace(
             "\n", "").strip()
         paper['subjects'] = dd_list[i].find("div", {"class": "list-subjects"}).text.replace("Subjects: ", "").strip()
-        paper['tldr'] = model.summarize(paper['abstract'])[0]["summary_text"]
+        abstract = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
+        paper['tldr'] = model.summarize(abstract)[0]["summary_text"]
         #paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
 
         for keyword in keyword_list:
