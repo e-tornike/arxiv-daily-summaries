@@ -17,7 +17,8 @@ KEYWORD_LIST = [
     "mixup", 
     "data augmentation", 
     "computational social science", 
-    "argument mining", 
+    "argument mining",
+    "scholarly",
     "scholarly document processing", 
     "citation context analysis",
     "knowledge graph",
@@ -28,4 +29,6 @@ KEYWORD_LIST = [
     "knowledge discovery",
     "cross-language information retrieval",
     "cross-lingual information retrieval",
+    "text generation",
+    "passage generation",
 ]
