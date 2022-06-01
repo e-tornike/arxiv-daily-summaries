@@ -31,4 +31,6 @@ KEYWORD_LIST = [
     "cross-lingual information retrieval",
     "text generation",
     "passage generation",
+    "paraphrase",
+    "simplification",
 ]
