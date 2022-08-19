@@ -33,4 +33,5 @@ KEYWORD_LIST = [
     "passage generation",
     "paraphrase",
     "simplification",
+    "plagiarism",
 ]
