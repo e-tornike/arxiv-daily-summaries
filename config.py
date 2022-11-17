@@ -23,6 +23,7 @@ KEYWORD_LIST = [
     "citation context analysis",
     "knowledge graph",
     "legal text",
+    "legal",
     "multi-task",
     "robustness",
     "summarization",
@@ -34,4 +35,5 @@ KEYWORD_LIST = [
     "paraphrase",
     "simplification",
     "plagiarism",
+    "abstract meaning representation",
 ]
