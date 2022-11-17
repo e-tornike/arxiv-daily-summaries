@@ -36,4 +36,5 @@ KEYWORD_LIST = [
     "simplification",
     "plagiarism",
     "abstract meaning representation",
+    "semantic similarity",
 ]
