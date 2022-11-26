@@ -1,4 +1,4 @@
-# encoding: utf-8
+See# encoding: utf-8
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -38,4 +38,5 @@ KEYWORD_LIST = [
     "abstract meaning representation",
     "semantic similarity",
     "similarity measure",
+    "contrastive",
 ]
