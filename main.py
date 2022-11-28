@@ -17,7 +17,7 @@ from config import NEW_SUB_URL, KEYWORD_LIST
 class Model:
 #     def __init__(self, model_path):
     def __init__(self):
-        self.summarizer = pipe("summarization", model="facebook/bart-large-cnn")
+        self.summarizer = pipe("summarization", model="facebook/bart-base")
 
     def summarize(self, text: str):
         return self.summarizer(text, max_length=200)
