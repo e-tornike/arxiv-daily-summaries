@@ -1,9 +1,3 @@
-See# encoding: utf-8
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 # The repository to add this issue to
 REPO_OWNER = 'e-tornike'
 REPO_NAME = 'arxiv-daily'
