@@ -20,7 +20,7 @@ class Model:
         self.summarizer = pipe("summarization", model="facebook/bart-base")
 
     def summarize(self, text: str):
-        return self.summarizer(text, max_length=200)
+        return self.summarizer(text, max_length=100)
 
 
 def main():
