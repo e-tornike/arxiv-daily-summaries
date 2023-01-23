@@ -1,4 +1,5 @@
 # arXiv Daily
+This project creates an issue on every work day with the latest arXiv pre-prints matching a given set of keywords. It also creates a TL;DR summary automatically using [BART](https://huggingface.co/facebook/bart-base).
 
 ## Usage( github actions)
 
