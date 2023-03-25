@@ -8,6 +8,7 @@ import os
 
 from bs4 import BeautifulSoup as bs
 import urllib.request
+import requests
 from transformers import pipeline as pipe
 
 from github_issue import make_github_issue
@@ -53,6 +54,12 @@ def main():
         abstract = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
         paper['tldr'] = model.summarize(abstract)[0]["summary_text"]
         #paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
+        
+        https://arxiv.paperswithcode.com/api/v0/papers/
+        pwc_response = urllib.request.urlopen(PWC_URL + paper_number).json()
+        if pwc_response.status_code == 200:
+            repo_url = r["official"]["url"]
+            paper['repo_url'] = repo_url
 
         for keyword in keyword_list:
             if keyword.lower() in abstract.lower():
@@ -76,7 +83,8 @@ def main():
                 report = f"<h3>{paper['title']}</h3>\
                     <strong>Authors:</strong> {paper['authors']}<br>\
                     <strong>Arxiv:</strong> <a href='{paper['main_page']}'>{paper['main_page']}</a><br>\
-                    <strong>TLDR:</strong> {paper['tldr']}"
+                    <strong>TLDR:</strong> {paper['tldr']}<br>
+                    <strong>Repo: {paper.get('repo_url', 'n/a')}<strong>"
                 full_report = full_report + report + '<br>'
             full_report = full_report + "</details>"
 
