@@ -1,6 +1,11 @@
 # arXiv Daily Summaries
 This project creates an issue on every work day with the latest arXiv pre-prints matching a given set of keywords. It also creates a TL;DR summary automatically using [BART](https://huggingface.co/facebook/bart-base).
 
+## Features:
+- Keyword matching
+- Automatic TD;DR summarization
+- (Work)daily updates
+
 ## Usage( github actions)
 
 #### 1. Clone and create new repository on Github
