@@ -11,6 +11,9 @@ REPO_NAME = 'arxiv-daily'
 # Set new submission url of subject
 NEW_SUB_URL = 'https://arxiv.org/list/cs/new'
 
+# Papers with Code URL
+PWC_URL = 'https://arxiv.paperswithcode.com/api/v0/papers/'
+
 # Keywords to search
 KEYWORD_LIST = [
     "extreme multi-label", 
