@@ -12,7 +12,7 @@ import requests
 from transformers import pipeline as pipe
 
 from github_issue import make_github_issue
-from config import NEW_SUB_URL, KEYWORD_LIST
+from config import NEW_SUB_URL, KEYWORD_LIST, PWC_URL
 
 
 class Model:
