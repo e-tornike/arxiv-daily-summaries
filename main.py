@@ -82,7 +82,7 @@ def main():
                 report = f"<h3>{paper['title']}</h3>\
                     <strong>Authors:</strong> {paper['authors']}<br>\
                     <strong>Arxiv:</strong> <a href='{paper['main_page']}'>{paper['main_page']}</a><br>\
-                    <strong>TLDR:</strong> {paper['tldr']}<br>
+                    <strong>TLDR:</strong> {paper['tldr']}<br>\
                     <strong>Repo: {paper.get('repo_url', 'n/a')}<strong>"
                 full_report = full_report + report + '<br>'
             full_report = full_report + "</details>"
