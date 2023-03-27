@@ -8,7 +8,7 @@ import os
 
 from bs4 import BeautifulSoup as bs
 import urllib.request
-import requests
+import json
 from transformers import pipeline as pipe
 
 from github_issue import make_github_issue
