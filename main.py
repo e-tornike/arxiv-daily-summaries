@@ -58,7 +58,7 @@ def main():
         client = urllib.request.Request(PWC_URL + paper_number, headers={"User-Agent" : "Mozilla/5.0"})
         try:
             pwc_response = json.load(urllib.request.urlopen(client))
-            if pwc_response.status_code == 200:
+            if pwc_response.getcode() == 200:
                 repo_url = r["official"]["url"]
                 paper['repo_url'] = repo_url
         except urllib.error.HTTPError:
