@@ -55,7 +55,6 @@ def main():
         paper['tldr'] = model.summarize(abstract)[0]["summary_text"]
         #paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
         
-        https://arxiv.paperswithcode.com/api/v0/papers/
         pwc_response = urllib.request.urlopen(PWC_URL + paper_number).json()
         if pwc_response.status_code == 200:
             repo_url = r["official"]["url"]
