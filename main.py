@@ -64,7 +64,7 @@ def main():
                     repo_url = r.get("official", {}).get("url", "")
                     if repo_url:
                         paper['repo_url'] = repo_url
-                except urllib.error.AttributeError:
+                except AttributeError:
                     print(f'Response does not contain the requested attribute. Response: {r}')
         except urllib.error.HTTPError:
             print(f'URL not found: {PWC_URL + paper_number}')
