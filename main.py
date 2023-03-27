@@ -56,10 +56,13 @@ def main():
         #paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
         
         client = urllib.request.Request(PWC_URL + paper_number, headers={"User-Agent" : "Mozilla/5.0"})
-        pwc_response = json.load(urllib.request.urlopen(client))
-        if pwc_response.status_code == 200:
-            repo_url = r["official"]["url"]
-            paper['repo_url'] = repo_url
+        try:
+            pwc_response = json.load(urllib.request.urlopen(client))
+            if pwc_response.status_code == 200:
+                repo_url = r["official"]["url"]
+                paper['repo_url'] = repo_url
+        except urllib.error.HTTPError:
+            print(f'URL not found: {PWC_URL + paper_number}')
 
         for keyword in keyword_list:
             if keyword.lower() in abstract.lower():
