@@ -60,10 +60,12 @@ def main():
             pwc_response = urllib.request.urlopen(client)
             if pwc_response.getcode() == 200:
                 r = json.load(pwc_response)
-                if r:
+                try:
                     repo_url = r.get("official", {}).get("url", "")
                     if repo_url:
                         paper['repo_url'] = repo_url
+                except urllib.error.AttributeError:
+                    print(f'Response does not contain the requested attribute. Response: {r}')
         except urllib.error.HTTPError:
             print(f'URL not found: {PWC_URL + paper_number}')
 
