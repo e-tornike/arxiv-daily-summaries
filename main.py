@@ -55,7 +55,8 @@ def main():
         paper['tldr'] = model.summarize(abstract)[0]["summary_text"]
         #paper['abstract'] = dd_list[i].find("p", {"class": "mathjax"}).text.replace("\n", " ").strip()
         
-        pwc_response = urllib.request.urlopen(PWC_URL + paper_number).json()
+        client = urllib.request.Request(PWC_URL + paper_number, headers={"User-Agent" : "Mozilla/5.0"})
+        pwc_response = json.load(urllib.request.urlopen(client))
         if pwc_response.status_code == 200:
             repo_url = r["official"]["url"]
             paper['repo_url'] = repo_url
